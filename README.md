@@ -1,6 +1,6 @@
 ## 在线借书平台
 
-<!-- <img src="https://imageslr.github.io/weapp-library/assets/img/weapp_code.f16279a1.png" width=250 /> -->
+<img src="https://imageslr.github.io/weapp-library/assets/img/weapp_code.f16279a1.png" width=250 />
 
 **如果你觉得这个仓库有用，请点一个 Star 支持一下我，谢谢！**  
 **如果对哪部分代码有疑问或者需要我讲一下设计和开发的整体理念/部分细节，可以开一个 Issue。欢迎大家与我交流。**
@@ -25,6 +25,14 @@ gulp mock
 如果在 mac 启动时报错：“无法打开 fse.node：来自身份不明的开发者“，请前往“系统设置 - 安全性与隐私 - 通用 - 允许从以下位置下载的 App”，点击“仍然允许“，然后再次执行 `gulp mock`。这里可能会有两次错误。
 
 这个功能拆分到了单独的仓库里，请查看 [simplest-mock-server](https://github.com/imageslr/simplest-mock-server)，一个开箱即用的搭建本地 mock 接口的工具。
+
+### 云托管
+
+本项目的线上版本使用微信开放平台的云开发能力部署 mock server，从而提供在线预览功能。以下是操作步骤，主要参考了[云托管文档 - 使用指南](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/guide/container/guidance.html)：
+1. 开通云托管，创建一个服务
+2. 将 mock server 所需文件打包为一个单独的文件夹，运行命令写在 Dockerfile 中，见 [weapp-library-cloud](https://github.com/imageslr/weapp-library-cloud)
+3. 在云托管中创建服务版本，本地上传文件夹，监听端口设置为 `3000`
+4. 修改小程序中调用接口的代码，将 `wx.request` 改为 `wx.cloud.callContainer`，参考 [cloud](https://github.com/imageslr/weapp-library/tree/cloud) 分支的 [最新提交](https://github.com/imageslr/weapp-library/commit/874617d640bcc98e75682d5aa1298bd4fc78844d)
 
 ### 文档
 [点击查看](https://imageslr.github.io/weapp-library)
